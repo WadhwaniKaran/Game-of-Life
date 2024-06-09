@@ -134,7 +134,8 @@ impl Board {
         }
         count
     }
-
+    // TODO: should combine the below 2 into 1 method
+    /// get x coords for horizontal neighbours
     fn get_horizontals(&self, x: usize) -> [usize; 2] {
         let tx1 = (x / self.width) as i32;
         let tx2 = (x % self.width) as i32;
@@ -144,6 +145,7 @@ impl Board {
         [cx1 as usize, cx2 as usize]
     }
 
+    /// get y coords for vertical neighbours
     fn get_verticals(&self, y: usize) -> [usize; 2] {
         let ty1 = (y / self.height) as i32;
         let ty2 = (y % self.height) as i32;
@@ -173,13 +175,15 @@ mod tests {
     use super::*;
 
     #[test]
-    fn dead_state() { // dead state stays dead
+    fn dead_state() { 
+        // dead state stays dead
         let b1 = Board::build(3, 3, 0);
         let b2 = b1.next_board_state();
         assert_eq!(b1.compare_boards(&b2), true);
     }
     #[test]
-    fn some_state() { // cell with exact 3 neighbours should become alive
+    fn some_state() {            
+        // cell with exact 3 alive neighbours should become alive
         let mut b1 = Board::build(5, 5, 0);
         b1.data[0].state = State::Alive;
         b1.data[5].state = State::Alive;
@@ -192,9 +196,7 @@ mod tests {
         b2_actual.data[1].state = State::Alive;
         b2_actual.data[5].state = State::Alive;
         b2_actual.data[6].state = State::Alive;
-        b1.pretty_print();
-        b2.pretty_print();
-        b2_actual.pretty_print();
+        
         assert_eq!(b2_actual.compare_boards(&b2), true);
     }
 } 
