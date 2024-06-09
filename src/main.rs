@@ -6,7 +6,7 @@ fn main() {
     let width = 50;
     let height = 20;
 
-    // TODO: add support to load initial state from a file as well as save a state
+    // TODO: add support to load initial state from a file as well as save a state to file
     let mut board = gol::Board::build(width, height, 1);
     board.pretty_print();
     loop {
