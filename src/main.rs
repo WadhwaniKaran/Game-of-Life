@@ -1,7 +1,7 @@
 use std::{thread, time};
 
 fn main() {
-    let ten_millis = time::Duration::from_millis(1000);
+    let one_sec = time::Duration::from_millis(1000);
 
     let width = 50;
     let height = 20;
@@ -12,7 +12,7 @@ fn main() {
         let b2 = board.next_board_state();
         b2.pretty_print();
         board = b2;
-        thread::sleep(ten_millis);
+        thread::sleep(one_sec);
     }
     
 }
